@@ -1,0 +1,6 @@
+[numbers]
+lenth :100
+
+[messages]
+hello: Nice to see you
+bye: See you

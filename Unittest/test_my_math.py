@@ -22,7 +22,7 @@ class MathTestCase(unittest.TestCase):
         self.count += 1
         print self.count
 
-    # # subprocess moudule to call checker
+    # # +subprocess moudule to call checker
     # def testWithPyChecker(self):
     #     cmd = 'pychecker', '-Q', my_math.__file__.rstrip('c')
     #     pychecker = Popen(cmd, stdout=PIPE, stderr=PIPE)

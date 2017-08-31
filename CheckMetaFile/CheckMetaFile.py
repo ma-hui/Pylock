@@ -1,11 +1,12 @@
 # -*- coding:utf-8 -*-
 import os
 import time
+import re
 
 DIR_PATH = "F:\TEST"
 FILE_TYPE = ".meta"
-ERR_FILE = []
 SVN_FILE = ".svn"
+ERR_FILE = []
 
 
 def add_err_file(fname):
@@ -15,7 +16,6 @@ def show_err_file():
     plen = len(DIR_PATH)
     for name in ERR_FILE:
         print name[plen+1 :]  #优化输出，不输出每个文件的DIR_PATH部分
-
 
 def is_meta_file(file):
     spos = len(FILE_TYPE)
@@ -53,9 +53,7 @@ def check_meta_file(path, names):
     err = "  Doesn't exist "
 
     for name in names :
-        if tb.has_key(name):
-            continue
-        else:    #还没有加入字典中的文件名,即还没有判断过的
+        if not tb.has_key(name): #还没有加入字典中的文件名,即还没有判断过的
 
             ff = os.path.join(path, name)
             if svn_info(ff) and name.find(SVN_FILE) == -1:    #是svn项目中的文件，而且不是svn管理产生的文件，进行meta和文件本体的对照检查
@@ -91,9 +89,20 @@ def  check_dir_path(dirpath):
     else:
         print '%s is not exists' % dirpath
 
+
+# def test():
+#     dirs = ['3rdParty', '3rdParty.meta', 'AVProVideo', 'AVProVideo.meta', 'CharacterEditor', 'CharacterEditor.meta', 'Editor', 'Editor.meta', 'EditorDefaultResources', 'EditorDefaultResources.meta', 'EditorScripts', 'EditorScripts.meta', 'FMODStudioCache.asset', 'FMODStudioCache.asset.meta', 'Gizmos', 'Gizmos.meta', 'gmcs.rsp.meta', 'link.xml', 'Plugins', 'Plugins.meta', 'Res', 'Res.meta', 'Resources', 'Resources.meta', 'Scenes', 'Scenes.meta', 'Scripts', 'Scripts.meta', 'smcs.rsp', 'smcs.rsp.meta', 'Standard Assets', 'Standard Assets.meta', 'StreamingAssets', 'StreamingAssets.meta']
+#     path = 'F:\warlock/trunk\client\Assets'
+#     t1 = time.time()
+#     for i in range(3000):
+#         check_meta_file(path, dirs)
+#     t2 = time.time()
+#     print t2-t1
+
 def main():
     check_dir_path(DIR_PATH)
     show_err_file()
 
 if __name__ == '__main__':
     main()
+    # test()

@@ -1,5 +1,4 @@
 # -*- coding=utf-8 -*-
-
 def lines(file):
     for line in file:
         yield line
